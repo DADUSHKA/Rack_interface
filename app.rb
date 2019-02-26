@@ -20,7 +20,7 @@ class App
     end
   end
 
-  def handler_time_request_usser
+  def handler_time_request_user
     user_format = Rack::Utils.parse_nested_query(@request.query_string).values.join.split(",")
     time_formatter = TimeFormatter.new(user_format)
 
