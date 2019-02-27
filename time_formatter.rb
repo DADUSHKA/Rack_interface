@@ -1,8 +1,17 @@
 class TimeFormatter
+  VALID_FORMATS = %w(year month day hour minute second)
 
   def initialize(array)
     @format = array
-    @valid_format = %w(year month day hour minute second)
+    @valid = %w(year month day hour minute second)
+  end
+
+  def valid?
+    (@format - VALID_FORMATS).empty?
+  end
+
+  def unknown_format
+    @format - VALID_FORMATS
   end
 
   def convert_format
@@ -24,14 +33,6 @@ class TimeFormatter
     end
 
     @format.join("-")
-  end
-
-  def valid?
-    (@format - @valid_format).empty?
-  end
-
-  def unknown_format
-    @format - @valid_format
   end
 
   def return_format

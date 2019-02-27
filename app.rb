@@ -6,7 +6,7 @@ class App
     @request = Rack::Request.new(env)
     @response = Rack::Response.new
     request_time_user
-    @response
+    @response.finish
   end
 
   private
@@ -21,7 +21,7 @@ class App
   end
 
   def handler_time_request_user
-    user_format = Rack::Utils.parse_nested_query(@request.query_string).values.join.split(",")
+    user_format = @request.params.values.join.split(",")
     time_formatter = TimeFormatter.new(user_format)
 
     if time_formatter.valid?
